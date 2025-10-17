@@ -3,7 +3,7 @@ import Auth from './Auth';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <Auth />
     </div>
   );
