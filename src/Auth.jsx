@@ -20,13 +20,13 @@ const auth = firebase.auth();
 const modes = {
   login: {
     title: 'Acessar conta',
-    subtitle: 'Entre com suas credenciais para acompanhar seus indicadores em tempo real.',
+    subtitle: 'Acesse sua área de automação total.',
     submitLabel: 'Entrar',
   },
   cadastro: {
-    title: 'Criar conta Lumen',
-    subtitle: 'Cadastre-se para experimentar o Lumen Hub e liberar todos os recursos.',
-    submitLabel: 'Cadastrar',
+    title: 'Criar conta IA VENDEDORA™',
+    subtitle: 'Ative sua IA Vendedora e acelere suas vendas em minutos.',
+    submitLabel: 'Criar conta',
   },
 };
 
@@ -54,10 +54,13 @@ export default function Auth() {
       try {
         if (modo === 'login') {
           await auth.signInWithEmailAndPassword(email, senha);
-          setStatus({ type: 'success', message: 'Login realizado com sucesso! Bem-vindo de volta ao Lumen.' });
+          setStatus({ type: 'success', message: 'Login realizado com sucesso! Bem-vindo de volta à sua automação.' });
         } else {
           await auth.createUserWithEmailAndPassword(email, senha);
-          setStatus({ type: 'success', message: 'Cadastro realizado com sucesso! Agora é só explorar o Lumen Hub.' });
+          setStatus({
+            type: 'success',
+            message: 'Cadastro realizado com sucesso! Agora é só ativar suas jornadas com a IA Vendedora.',
+          });
         }
       } catch (error) {
         setStatus({ type: 'error', message: traduzirErroFirebase(error) });
@@ -131,20 +134,16 @@ export default function Auth() {
           <button className="btn-primary" type="submit" disabled={loading}>
             {loading ? 'Processando…' : meta.submitLabel}
           </button>
-          <button
-            className="btn-secondary"
-            type="button"
-            onClick={handleModeToggle}
-          >
-            {modo === 'login' ? 'Quero criar minha conta' : 'Já tenho uma conta Lumen'}
+          <button className="btn-secondary" type="button" onClick={handleModeToggle}>
+            {modo === 'login' ? 'Quero criar minha conta IA Vendedora' : 'Já tenho uma conta IA Vendedora'}
           </button>
         </div>
       </form>
 
       <footer className="auth-footer">
         <span>
-          Precisa de suporte? Fale com o time Lumen pelo chat integrado ou envie um e-mail para
-          suporte@lumen.app.
+          Precisa de suporte? Fale com o time da IA Vendedora pelo chat integrado ou envie um e-mail para
+          suporte@iavendedora.com.
         </span>
         {modo === 'login' && (
           <button type="button" onClick={handlePasswordReset}>
@@ -166,7 +165,7 @@ function traduzirErroFirebase(error) {
     'auth/user-disabled': 'Esta conta foi desativada. Entre em contato com o suporte.',
     'auth/user-not-found': 'Não encontramos uma conta com este e-mail.',
     'auth/wrong-password': 'Senha incorreta. Verifique seus dados e tente novamente.',
-    'auth/email-already-in-use': 'Este e-mail já está vinculado a uma conta Lumen.',
+    'auth/email-already-in-use': 'Este e-mail já está vinculado a uma conta IA Vendedora.',
     'auth/weak-password': 'A senha deve ter pelo menos 6 caracteres.',
     'auth/network-request-failed': 'Não foi possível conectar. Verifique sua internet e tente outra vez.',
   };
